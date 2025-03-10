@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>avni madhwesh</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1 id="title"></h1>
+    </header>
+    
+    <main>
+        <div class="gallery" id="gallery"></div>
+    </main>
+    
+    <footer>
+        <p>Contact: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+    </footer>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const title = document.getElementById("title");
+            const text = "Avni Madhwesh";
+            let index = 0;
+
+            function typeEffect() {
+                if (index < text.length) {
+                    title.innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(typeEffect, 100);
+                }
+            }
+
+            title.innerHTML = "";
+            typeEffect();
+            gsap.from("header", { opacity: 0, y: -20, duration: 1 });
+
+            const projects = [
+                {
+                    title: "AvniScribbles",
+                    image: "images/avniscribbles.jpg",
+                    blurb: "Exploring the creative writing process with iterative storytelling.",
+                    link: "#"
+                },
+                {
+                    title: "Shimon's Musical Gestures",
+                    image: "images/shimon.jpg",
+                    blurb: "Designing expressive gestures for a robotic musician.",
+                    link: "#"
+                },
+                {
+                    title: "Melody Analysis App",
+                    image: "images/melody.jpg",
+                    blurb: "Analyzing sung melodies to extract pitch and key information.",
+                    link: "#"
+                },
+                {
+                    title: "VR Storytelling & Spatial Cognition",
+                    image: "images/vr_storytelling.jpg",
+                    blurb: "Investigating how AR/VR influences storytelling through spatial cognition.",
+                    link: "#"
+                },
+                {
+                    title: "Creative AI in Clustering & Language",
+                    image: "images/ai_clustering.jpg",
+                    blurb: "Applying AI-driven clustering and linguistics to computational creativity.",
+                    link: "#"
+                }
+            ];
+            
+            const gallery = document.getElementById("gallery");
+            projects.forEach((project, index) => {
+                const tile = document.createElement("div");
+                tile.classList.add("tile");
+                tile.innerHTML = `
+                    <a href="${project.link}" class="tile-link">
+                        <div class="tile-top">
+                            <img src="${project.image}" alt="${project.title}" class="tile-image">
+                            <div class="tile-overlay">
+                                <h2>${project.title}</h2>
+                            </div>
+                        </div>
+                        <div class="tile-bottom">
+                            <p>${project.blurb}</p>
+                        </div>
+                    </a>
+                `;
+                gallery.appendChild(tile);
+                gsap.from(tile, { opacity: 0, y: 30, duration: 1, delay: index * 0.2 });
+            });
+        });
+    </script>
+</body>
+</html>
