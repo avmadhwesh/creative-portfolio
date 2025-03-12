@@ -1,72 +1,143 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&family=Silkscreen:wght@400;700&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-}
+    font-weight: 400;
+}  
 
 body {
-    background-color: #f5f7fa;
-    color: #1e293b;
+    background-color: #f9f9fb;
+    /* color: #1a1a1a; */
     text-align: center;
-    padding: 40px 20px;
+    padding: 50px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
+    position: relative;
 }
 
-header {
-    margin-bottom: 30px;
-    font-size: 2.5rem;
-    font-weight: 100;
-    letter-spacing: 2px;
-    /* text-transform: uppercase; */
-    color: #6a0dad; /* Purple glow effect */
-    text-shadow: 0px 0px 15px rgba(106, 13, 173, 0.6);
-    opacity: 0;
-    animation: fadeIn 1.5s ease-in-out forwards;
+/* === GRADIENT & GRID OVERLAY === */
+.gradient-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
 }
 
+.gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.176) 0%, rgba(233, 236, 244, 0.8) 50%, rgb(247, 231, 231) 100%);
+    mix-blend-mode: screen;
+}
+
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("images/grid.svg");
+    background-repeat: repeat;
+    opacity: 0.46;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* === HEADER LAYOUT === */
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+/* === NAME STYLING === */
+#name-title {
+    font-size: 3.5rem;
+    font-weight: 200;
+    text-align: center;
+    font-family: 'Silkscreen', sans-serif; 
+    font-stretch: condensed;
+    color: rgb(255, 157, 184);
+}
+
+/* === FLIPBOARD LAYOUT === */
+#flipboard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.flipboard-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* === GALLERY GRID === */
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
-    max-width: 1200px;
-    margin: 0 auto;
+    gap: 30px;
+    max-width: 1100px;
+    margin-top: 30px;
+    position: relative;
+    z-index: 3;
 }
 
 .tile {
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    border-radius: 16px;
     overflow: hidden;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    background: white;
+    z-index: 3;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 320px;
 }
 
-.tile:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-/* Top box with image and overlay */
 .tile-top {
     position: relative;
     width: 100%;
-    height: 200px;
+    height: 320px;
+    overflow: hidden;
+    border-radius: 16px 16px 0 0;
 }
 
-.tile-image {
+.tile img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 10px 10px 0 0;
+    filter: brightness(90%);
+    transition: filter 0.3s ease-in-out;
+}
+
+.tile:hover img {
+    filter: brightness(95%);
 }
 
 .tile-overlay {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
     height: 100%;
@@ -75,51 +146,46 @@ header {
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    opacity: 1;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: center;
+    font-family: 'Quantico', sans-serif;
     transition: opacity 0.3s ease-in-out;
 }
 
 .tile:hover .tile-overlay {
-    opacity: 0;
+    opacity: 0.95;
 }
 
-/* Bottom box with description */
 .tile-bottom {
-    padding: 15px;
+    width: 100%;
     background: white;
+    padding: 15px;
     font-size: 1rem;
-    color: #475569;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    color: #555;
+    font-family: 'Inter', sans-serif;
+    text-align: left;
+    border-radius: 0 0 16px 16px;
 }
 
-.tile:hover .tile-bottom {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.tile a {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
+/* === FOOTER === */
 footer {
-    margin-top: 40px;
+    margin-top: auto;
     font-size: 1rem;
-    color: #64748b;
-    font-weight: bold;
+    color: #666;
+    position: relative;
+    z-index: 3;
+    padding-bottom: 20px;
+    padding-top: 40px;
 }
 
 footer a {
     color: #6a0dad;
     text-decoration: none;
+    font-weight: 600;
 }
 
-/* Typing Animation */
+/* === ANIMATIONS === */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -128,5 +194,110 @@ footer a {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* === SPLITFLAP (FLIPBOARD) EFFECT === */
+/* Updated with smaller dimensions */
+
+.splitflap {
+    position: relative;
+    width: 20px; /* Reduced from 100px */
+    height: 20px; /* Reduced from 100px */
+    font-size: 20px; /* Reduced from 100px */
+    font-family: monospace;
+    color: white;
+    margin: 1px; /* Reduced margin */
+}
+
+/* Both halves now span the full container */
+.top,
+.bottom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 20px; /* Updated to match new height */
+}
+
+/* Clip the top to only show the upper half */
+.top {
+    clip-path: inset(0 0 50% 0);
+    background-color: #3BB6EB;
+    border-radius: 4px 4px 0 0;
+    overflow: hidden;
+    z-index: 3;
+}
+
+/* Clip the bottom to only show the lower half */
+.bottom {
+    clip-path: inset(50% 0 0 0);
+    background-color: #3BB6EB;
+    border-radius: 0 0 4px 4px;
+    z-index: 2;
+}
+
+.nextHalf {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50%;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 4px 4px 0 0;
+    z-index: 1;
+    background-color: #3BB6EB;
+    transform-origin: bottom;
+}
+
+.nextFull {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #3BB6EB;
+    border-radius: 4px;
+    z-index: 0;
+}
+
+.flip1 {
+    animation: flip1 ease-in 1;
+    animation-duration: 0.07s;
+    z-index: 4;
+}
+
+.flip2 {
+    animation: flip2 ease-out 1;
+    animation-duration: 0.07s;
+    z-index: 3;
+}
+
+@keyframes flip1 {
+    0% {
+        transform: rotateX(0deg);
+        background-color: #3BB6EB;
+    }
+    50% {
+        transform: rotateX(90deg);
+        background-color: black;
+    }
+    100% {
+        transform: rotateX(90deg);
+    }
+}
+
+@keyframes flip2 {
+    0% {
+        transform: rotateX(-90deg);
+    }
+    50% {
+        transform: rotateX(-90deg);
+    }
+    100% {
+        transform: rotateX(0deg);
+        background-color: #3BB6EB;
     }
 }
