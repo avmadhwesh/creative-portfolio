@@ -134,6 +134,10 @@ body {
     transition: filter 0.3s ease-in-out;
 }
 
+.tile:hover {
+    transform: translateY(-10px);
+}
+
 .tile:hover img {
     filter: brightness(90%);
 }

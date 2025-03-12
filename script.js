@@ -179,6 +179,11 @@ document.addEventListener("DOMContentLoaded", () => {
         gallery.appendChild(tile);
         
         // GSAP fade-in animation for projects
-        gsap.from(tile, { opacity: 0, y: 0, duration: 1, delay: index * 0.2 });
+        gsap.from(tile, { opacity: 0, y: 0, duration: 1, delay: index * 0.2,
+            onComplete: function() {
+                // Remove inline transform styles so CSS hover can work
+                tile.style.transform = '';
+            }
+         });
     });
 });
