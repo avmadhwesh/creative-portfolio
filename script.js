@@ -120,8 +120,10 @@ document.addEventListener("DOMContentLoaded", () => {
             flag[x] = true;
             a2[x].classList.remove("flip1");
             b2[x].classList.remove("flip2");
-            a2[x].style.backgroundColor = "#3BB6EB";
-            b2[x].style.backgroundColor = "#3BB6EB";
+            // a2[x].style.backgroundColor = "#3BB6EB";
+            // b2[x].style.backgroundColor = "#3BB6EB";
+            a2[x].style.backgroundColor = "#1c3139"
+            b2[x].style.backgroundColor = "#1c3139"
             a1[x].innerHTML = char[(strCount[x] === 0) ? char.length - 1 : strCount[x] - 1];
             a2[x].innerHTML = char[(strCount[x] === 0) ? char.length - 1 : strCount[x] - 1];
         }
@@ -140,20 +142,20 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "shimon, gestures for a musical improv robot",
             image: "images/shimon.jpg",
             blurb: "Designing expressive gestures for a robotic musician.",
-            link: "#"
+            link: "https://avmadhwesh.github.io/robotic-gestures/"
         },
         {
             title: "cognitive clustering & the traveling salesman problem",
             image: "images/tsp-option-1.jpg",
             blurb: "Researching clustering strategies to simulate human perception and intuitive solving of the TSP.",
             link: "#"
-        },
-        {
-            title: "VR Storytelling & Spatial Cognition",
-            image: "images/vr_storytelling.jpg",
-            blurb: "Investigating how AR/VR influences storytelling through spatial cognition.",
-            link: "#"
-        }
+        }//,
+        // {
+        //     title: "VR Storytelling & Spatial Cognition",
+        //     image: "images/vr_storytelling.jpg",
+        //     blurb: "Investigating how AR/VR influences storytelling through spatial cognition.",
+        //     link: "#"
+        // }
     ];
 
     // Insert projects into the gallery
