@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "cognitive clustering & the traveling salesman problem",
             image: "images/tsp-option-1.jpg",
             blurb: "Researching clustering strategies to simulate human perception and intuitive solving of the TSP.",
-            link: "#"
+            link: "https://escholarship.org/uc/item/5q76r06x"
         }//,
         // {
         //     title: "VR Storytelling & Spatial Cognition",
